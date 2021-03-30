@@ -29,7 +29,8 @@
                 Teams
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="create-team">Create Team</a>
+                <a class="dropdown-item" href="/team">List of your teams</a>
+                <a class="dropdown-item" href="/team/create">Create Team</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -40,6 +41,8 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+            <button class="btn btn-outline-success my-2 my-sm-0" href="https://osu.ppy.sh/oauth/authorize?" type="submit">login</button>
+            
         </div>
     </nav>
         @yield('content')

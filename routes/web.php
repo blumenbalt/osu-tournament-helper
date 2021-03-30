@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,13 @@ Route::get('/', function () {
     return view('app');
 });
 
-Route::get('/create-team', function () {
-    return view('team/create-team');
-});
+$team= TeamController::class;
+Route::get('/team/create',[$team, 'create']);
+Route::get('/team/{id}',[$team, 'show']);
+Route::get('/team/{id}/edit',[$team, 'edit']);
+Route::get('/team',[$team, 'index']);
+Route::post('/team',[$team, 'store']);
+Route::post('/team/{id}',[$team, 'update']);
 
 Auth::routes();
 
