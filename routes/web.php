@@ -29,3 +29,29 @@ Route::post('/team/{id}',[$team, 'update']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/callback', function(){
+    // dd($request->all());
+    return view('users.callback');
+});
+
+Route::post('/token',function($code){
+    redirect('https://osu.ppy.sh/oauth/token');
+});
+
+
+// Route::get('/authorize', function(){
+//     error_log('teste');
+//     $query = http_build_query([
+//         'client_id' => '6689',
+//         'redirect_uri' => 'http://127.0.0.1:8000/callback',
+//         'response_type' => 'code',
+//         'scope' => '',
+//         'state' => '',
+//     ]);
+//     return redirect('https://osu.ppy.sh/oauth/authorize'.$query);
+// });
+
+// Route::get('/callback', function ($request){
+//     dd($request->all());
+// });

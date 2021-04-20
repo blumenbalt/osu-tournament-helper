@@ -41,8 +41,8 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-            <button class="btn btn-outline-success my-2 my-sm-0" href="https://osu.ppy.sh/oauth/authorize?" type="submit">login</button>
-            
+            <a class="btn btn-outline-success my-2 my-sm-0" href="https://osu.ppy.sh/oauth/authorize?response_type=code&amp;client_id=6689&amp;scope=identify%20public&amp;redirect_uri=http://127.0.0.1:8000/callback" type="button">login</a>
+            <!-- <a href="https://osu.ppy.sh/oauth/authorize?response_type=code&amp;client_id=6689&amp;scope=identify%20public&amp;redirect_uri=http://127.0.0.1:8000/callback">Register or Login</a> -->
         </div>
     </nav>
         @yield('content')
