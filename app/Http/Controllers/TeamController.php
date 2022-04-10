@@ -43,6 +43,6 @@ class TeamController extends Controller
         $team->description = request('description');
         $team->leader = request('leader');
         $team->save();
-        // return redirect('/');
+        return redirect('/');
     }
 }

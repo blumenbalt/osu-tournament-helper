@@ -2,11 +2,11 @@
 @section('content')
 
 <div class="mt-5 mb-5 ml-3 mr-3">
-    <form action="/team/{{$team->id}}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <h2>Edit Team</h2>
+    <form action="{{ route('teams.update', ['id' => $team->id]) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <h2>Edit Team</h2>
         <div class="col-6">
-                <label>Team picture *:</label>
+            <label>Team picture *:</label>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="picture">
                 <label class="custom-file-label" for="picture">Choose team profile pic</label>
