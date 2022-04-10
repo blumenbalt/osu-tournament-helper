@@ -20,6 +20,9 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'osu_id',
+        'pp',
+        'updated_rank',
+        'country',
     ];
 
     /**
