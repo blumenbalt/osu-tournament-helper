@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use GuzzleHttp\Client;
-
 class UserController extends Controller
 {
     /**
@@ -19,7 +18,8 @@ class UserController extends Controller
         //
     }
 
-    public function oauth(Request $request){
+    public function oauth(Request $request)
+    {
         $client = new Client();
         $response = $client->request('POST', 'https://osu.ppy.sh/oauth/token', [
             'form_params' => [
@@ -30,29 +30,32 @@ class UserController extends Controller
                 'grant_type' => 'authorization_code',
             ]
         ]);
-        $result= json_decode($response->getBody());
+        $result = json_decode($response->getBody());
         CookieController::setCookieAccessToken($result);
-        return $this->getUserData($request);
+        return $this->getUserData($result->access_token);
     }
 
-    public function getUserData(Request $request){
-        $token = CookieController::getCookieAccessToken();
+    public function getUserData($token = null)
+    {
+        $token = !$token ? CookieController::getCookieAccessToken() : $token;
+
         $client = new Client();
-        $request = $client->request('GET', 'https://osu.ppy.sh/api/v2/me/osu',[
+        $request = $client->request('GET', 'https://osu.ppy.sh/api/v2/me/osu', [
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,
                 'Content-Type'  => 'application/json',
                 'Accept' => 'application/json',
             ]
         ]);
-        
-        
-        $result= json_decode($request->getBody());
+
+
+        $result = json_decode($request->getBody());
 
         return $this->index($result);
     }
 
-    public function index($result){
-        return view ('users.user', ['user' => $result]);
+    public function index($result)
+    {
+        return view('users.user', ['user' => $result]);
     }
 }
