@@ -11286,3 +11286,17 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.avatar-xlg {
+  width: 150px;
+  height: 150px;
+}
+
+.avatar-lg {
+  width: 124px;
+  height: 124px;
+}
+
+.avatar-sm {
+  width: 54px;
+  height: 54px;
+}
