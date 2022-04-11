@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\OsuAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +39,4 @@ Route::name('teams.')->group(function () {
     Route::post('/teams/{id}',[$team, 'update'])->name('update');
 });
 
-Route::get('/callback', [$user, 'oauth']);
+Route::get('/callback', [OsuAuthController::class, 'oauth']);
