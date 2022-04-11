@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username');
-            $table->bigInteger('osu_id');
+            $table->string('osu_id');
             $table->integer('pp');
             $table->float('updated_rank');
             $table->string('country');
