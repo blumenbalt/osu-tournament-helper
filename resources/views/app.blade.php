@@ -38,7 +38,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -60,11 +60,20 @@
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                @auth
+                <h5 class="my-2 me-2">
+                    {{ auth()->user()->username }}
+                </h5>
+                <img src="https://a.ppy.sh/{{auth()->user()->osu_id}}" alt="osu user image" class="img-fluid rounded-circle avatar-sm me-2">
+                @endauth
+                @guest
+                <a class="btn btn-outline-success my-2 my-sm-0" href="https://osu.ppy.sh/oauth/authorize?response_type=code&amp;client_id=6689&amp;scope=identify%20public&amp;redirect_uri=http://localhost:8000/callback" type="button">Register or Login</a>
+                @else
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
                 </form>
-                <a class="btn btn-outline-success my-2 my-sm-0" href="https://osu.ppy.sh/oauth/authorize?response_type=code&amp;client_id=6689&amp;scope=identify%20public&amp;redirect_uri=http://localhost:8000/callback" type="button">Login</a>
+                @endguest
             </div>
         </div>
     </nav>
