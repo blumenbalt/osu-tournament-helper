@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -49,10 +48,20 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        $user = [
+            'username' => $data['username'],
+            'osu_id' => $data['id'],
+            'pp' => $data['statistics']['pp'],
+            'updated_rank' => $data['statistics']['global_rank'],
+            'country' => $data['country']['name'],
+        ];
+
+        return Validator::make($user, [
+            'username' => ['required', 'string', 'max:255'],
+            'osu_id' => ['required', 'numeric'],
+            'pp' => ['required', 'numeric'],
+            'updated_rank' => ['required', 'numeric'],
+            'country' => ['required', 'string'],
         ]);
     }
 
@@ -64,10 +73,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $user = User::firstWhere('osu_id', $data['id']);
+
+        if ($user) {
+            return $user;
+        }
+
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'username' => $data['username'],
+            'osu_id' => $data['id'],
+            'pp' => $data['statistics']['pp'],
+            'updated_rank' => $data['statistics']['global_rank'],
+            'country' => $data['country']['name'],
         ]);
     }
 }
