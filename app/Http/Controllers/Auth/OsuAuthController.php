@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\CookieController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
@@ -29,7 +32,7 @@ class OsuAuthController extends Controller
         $token = !$token ? CookieController::getCookieAccessToken() : $token;
 
         $client = new Client();
-        $request = $client->request('GET', 'https://osu.ppy.sh/api/v2/me/osu', [
+        $osu_data_request = $client->request('GET', 'https://osu.ppy.sh/api/v2/me/osu', [
             'headers' => [
                 'Authorization' => 'Bearer ' . $token,
                 'Content-Type'  => 'application/json',
@@ -37,10 +40,15 @@ class OsuAuthController extends Controller
             ]
         ]);
 
+        $result = json_decode($osu_data_request->getBody(), true);
 
+        $request = new Request();
+        $request->setMethod('POST');
+        $request->request->add($result);
 
-        $result = json_decode($request->getBody());
+        $register_controller = new RegisterController();
+        $register_controller->register($request);
 
-        return $result;
+        return redirect('/');
     }
 }
