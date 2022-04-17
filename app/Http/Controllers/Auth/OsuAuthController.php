@@ -10,6 +10,22 @@ use GuzzleHttp\Client;
 
 class OsuAuthController extends Controller
 {
+    public function clientOauth()
+    {
+        $client = new Client();
+        $response = $client->request('POST', 'https://osu.ppy.sh/oauth/token', [
+            'form_params' => [
+                'client_id' => '6689',
+                'client_secret' => 'gfFFuM3EJO2p4gKOdBpklqYQB7V3BmOBQpMTVAuj',
+                'redirect_uri' => 'http://localhost:8000/callback',
+                'grant_type' => 'client_credentials',
+            ]
+        ]);
+        $result = json_decode($response->getBody());
+        CookieController::setCookieClientAccessToken($result);
+        // return $this->getUserData($result->access_token, true);
+    }
+
     public function oauth(Request $request)
     {
         $client = new Client();
@@ -23,13 +39,13 @@ class OsuAuthController extends Controller
             ]
         ]);
         $result = json_decode($response->getBody());
-        CookieController::setCookieAccessToken($result);
+        CookieController::setCookieUserAccessToken($result);
         return $this->getUserData($result->access_token, true);
     }
 
     public function getUserData($token = null, $flag = false)
     {
-        $token = !$token ? CookieController::getCookieAccessToken() : $token;
+        $token = !$token ? CookieController::getCookieUserAccessToken() : $token;
 
         $client = new Client();
         $osu_data_request = $client->request('GET', 'https://osu.ppy.sh/api/v2/me/osu', [
