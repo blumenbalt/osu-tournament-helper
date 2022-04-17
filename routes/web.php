@@ -20,7 +20,7 @@ use App\Http\Controllers\Auth\OsuAuthController;
 $user= UserController::class;
 
 Route::get('/', function () {
-    return view('app');
+    return view('index');
 });
 
 Auth::routes();

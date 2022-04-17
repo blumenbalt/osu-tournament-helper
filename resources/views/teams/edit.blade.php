@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 @section('content')
 
 <div class="mt-5 mb-5 ml-3 mr-3">
