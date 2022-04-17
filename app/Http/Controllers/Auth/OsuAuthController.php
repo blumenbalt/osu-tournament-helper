@@ -24,10 +24,10 @@ class OsuAuthController extends Controller
         ]);
         $result = json_decode($response->getBody());
         CookieController::setCookieAccessToken($result);
-        return $this->getUserData($result->access_token);
+        return $this->getUserData($result->access_token, true);
     }
 
-    public function getUserData($token = null)
+    public function getUserData($token = null, $flag = false)
     {
         $token = !$token ? CookieController::getCookieAccessToken() : $token;
 
@@ -42,13 +42,19 @@ class OsuAuthController extends Controller
 
         $result = json_decode($osu_data_request->getBody(), true);
 
+        if ($flag)
+            $this->registerOrLogin($result);
+
+        return redirect('/');
+    }
+
+    public function registerOrLogin($result)
+    {
         $request = new Request();
         $request->setMethod('POST');
         $request->request->add($result);
 
         $register_controller = new RegisterController();
         $register_controller->register($request);
-
-        return redirect('/');
     }
 }
