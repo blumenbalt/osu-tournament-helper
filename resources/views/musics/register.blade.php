@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div>
-    <a href="{{route('musics.register')}}">teste</a>
+    <input type="text" name="beatmap_id">
 </div>
 @endsection
