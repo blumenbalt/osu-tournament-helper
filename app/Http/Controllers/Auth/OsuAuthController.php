@@ -17,13 +17,13 @@ class OsuAuthController extends Controller
             'form_params' => [
                 'client_id' => '6689',
                 'client_secret' => 'gfFFuM3EJO2p4gKOdBpklqYQB7V3BmOBQpMTVAuj',
-                'redirect_uri' => 'http://localhost:8000/callback',
                 'grant_type' => 'client_credentials',
+                "scope" => "public"
             ]
         ]);
         $result = json_decode($response->getBody());
         CookieController::setCookieClientAccessToken($result);
-        // return $this->getUserData($result->access_token, true);
+        return $result->access_token;
     }
 
     public function oauth(Request $request)

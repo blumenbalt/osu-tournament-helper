@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div>
-    <input type="text" name="beatmap_id">
+    <form action="{{route('musics.getBeatmap')}}" method="get">
+        <input type="text" name="beatmap_id">
+        <button type="submit">Sync</button>
+    </form>
 </div>
 @endsection

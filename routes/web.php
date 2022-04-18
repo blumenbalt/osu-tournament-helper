@@ -44,6 +44,7 @@ Route::name('musics.')->group(function () {
     $music = MusicController::class;
     Route::get('/musics', [$music, 'index'])->name('index');
     Route::get('/musics/register', [$music, 'register'])->name('register');
+    Route::get('/musics/getBeatmap', [$music, 'getBeatmap'])->name('getBeatmap');
 });
 
 Route::get('/callback', [OsuAuthController::class, 'oauth']);
