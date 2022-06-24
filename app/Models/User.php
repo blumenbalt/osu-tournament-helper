@@ -22,6 +22,15 @@ class User extends Authenticatable
         'pp',
         'updated_rank',
         'country',
+        /**
+         * pending for changes
+         */
+        'badges',
+        'strengths',
+        'weaknesses',
+        'mod_preference',
+        'best_schedule',
+        // 'skills',
     ];
 
     /**
