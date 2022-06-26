@@ -17,6 +17,7 @@ class Team extends Model
         'name',
         'description',
         'leader',
+        // 'icon',
     ];
     /**
      * The attributes that should be hidden for arrays.
