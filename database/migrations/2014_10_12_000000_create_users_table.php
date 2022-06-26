@@ -18,20 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('username');
             $table->string('osu_id');
             $table->integer('pp');
-            $table->float('updated_rank');
+            $table->integer('updated_rank');
             $table->string('country');
-            //pending for changes
-            $table->string('badges');
-            //pending for changes
-            $table->string('strengths');
-            //pending for changes
-            $table->string('weaknesses');
             $table->set('mod_preference', ['hardrock', 'doubletime', 'hidden', 'flashlight', 'easy']);
-            //pending for changes
-            $table->date('best_schedule');
-
-            //pending for changes
-            // $table->enum('skills', []);
             $table->timestamps();
         });
     }
