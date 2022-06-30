@@ -17,7 +17,7 @@ class Bracket extends Model
         'round',
     ];
     /**
-     * Get the phone associated with the user.
+     * Get the tournament associated with the bracket.
      */
     public function tournament()
     {
