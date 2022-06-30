@@ -12,6 +12,14 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * Get the userSkill related to the user
+     */
+    public function userSkill()
+    {
+        $this->hasMany(UserSkill::class);
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>

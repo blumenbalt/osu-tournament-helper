@@ -5,15 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Skill extends Model
+class UserSkill extends Model
 {
     use HasFactory;
+
     /**
-     * Get the userSkill that owns the skill.
+     * Get the skill related to the userSkill
      */
-    public function userSkill()
+    public function skill()
     {
-        return $this->belongsToMany(UserSkill::class);
+        $this->hasOne(Skill::class);
+    }
+    /**
+     * Get the user that owns the userSkill
+     */
+    public function user()
+    {
+        $this->belongsTo(User::class);
     }
     /**
      * The attributes that are mass assignable.
@@ -21,8 +29,9 @@ class Skill extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'description',
+        'type',
+        'self_rating',
+        'public_rating'
     ];
     /**
      * The attributes that should be hidden for arrays.
