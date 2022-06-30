@@ -16,6 +16,15 @@ class MapPool extends Model
     {
         return $this->hasOne(Bracket::class);
     }
+
+    /**
+     * Get the poolItems for the mapPool.
+     */
+    public function poolItems()
+    {
+        return $this->hasMany(PoolItem::class);
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
