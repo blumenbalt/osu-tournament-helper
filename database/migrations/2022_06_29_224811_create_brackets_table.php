@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             //@todo: check enums
             $table->enum('round', ['', '']);
+            $table->integer('tournaemnt_id')->unsigned();
             $table->foreign('tournament_id')->references('id')->on('tournaments');
             $table->timestamps();
         });

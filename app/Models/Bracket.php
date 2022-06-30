@@ -17,6 +17,13 @@ class Bracket extends Model
         'round',
     ];
     /**
+     * Get the map pool that owns the bracket.
+     */
+    public function mapPool()
+    {
+        return $this->belongsTo(MapPool::class);
+    }
+    /**
      * Get the tournament associated with the bracket.
      */
     public function tournament()
