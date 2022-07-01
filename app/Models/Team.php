@@ -9,6 +9,20 @@ class Team extends Model
 {
     use HasFactory;
     /**
+     * the users that the team has.
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'team_member');
+    }
+    /**
+     * The tournaments that the teams are into.
+     */
+    public function tournaments()
+    {
+        return $this->belongsToMany(Tournament::class, 'team_tournament');
+    }
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

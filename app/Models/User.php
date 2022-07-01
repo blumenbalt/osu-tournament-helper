@@ -12,6 +12,14 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * The teams that the user has.
+     */
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class, 'team_member');
+    }
+
+    /**
      * Get the userSkill related to the user
      */
     public function userSkill()
