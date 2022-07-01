@@ -9,6 +9,13 @@ class Tournament extends Model
 {
     use HasFactory;
     /**
+     * The teams that the tournament has.
+     */
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class, 'team_tournament');
+    }
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
