@@ -8,6 +8,31 @@ use Illuminate\Database\Eloquent\Model;
 class Game extends Model
 {
     use HasFactory;
+
+    /**
+     * gets the team a related to the game match
+     */
+    public function team_a()
+    {
+        $this->hasOne(TeamTournament::class);
+    }
+
+    /**
+     * gets the team b related to the game match
+     */
+    public function team_b()
+    {
+        $this->hasOne(TeamTournament::class);
+    }
+
+    /**
+     * gets the winner team a related to the game match
+     */
+    public function winner_team()
+    {
+        $this->hasOne(TeamTournament::class);
+    }
+
     /**
      * Get the bracket related to the game match
      */
