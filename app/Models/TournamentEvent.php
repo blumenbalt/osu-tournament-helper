@@ -5,25 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tournament extends Model
+class TournamentEvent extends Model
 {
     use HasFactory;
 
     /**
-     * Get the event associated with the tournament.
+     * Get the tournament associated with the event.
      */
-    public function event()
+    public function tournament()
     {
-        return $this->hasOne(TournamentEvent::class);
+        return $this->belongsTo(Tournament::class);
     }
 
-    /**
-     * The teams that the tournament has.
-     */
-    public function teams()
-    {
-        return $this->belongsToMany(Team::class, 'team_tournament');
-    }
     /**
      * The attributes that are mass assignable.
      *
@@ -31,8 +24,7 @@ class Tournament extends Model
      */
     protected $fillable = [
         'name',
-        'min_rank',
-        'max_rank',
+        'date',
     ];
     /**
      * The attributes that should be hidden for arrays.
