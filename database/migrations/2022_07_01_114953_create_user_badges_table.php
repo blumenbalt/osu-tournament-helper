@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('user_badges', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
             $table->date('awarded_at');
             $table->text('description');
             $table->string('image_url');
             $table->string('url');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

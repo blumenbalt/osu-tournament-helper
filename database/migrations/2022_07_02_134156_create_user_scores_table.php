@@ -18,12 +18,9 @@ return new class extends Migration
             $table->integer('points');
             $table->integer('max_combo');
             $table->set('mods', ['hardrock', 'hidden', 'doubletime', 'flashlight', 'easy']);
-            $table->integer('game_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->integer('pool_item_id')->unsigned();
-            $table->foreign('game_id')->references('id')->on('games');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('pool_item_id')->references('id')->on('pool_items');
+            $table->foreignId('game_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('pool_item_id')->constrained();
             $table->timestamps();
         });
     }

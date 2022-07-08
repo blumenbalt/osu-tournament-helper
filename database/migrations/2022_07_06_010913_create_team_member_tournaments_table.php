@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('team_member_tournaments', function (Blueprint $table) {
             $table->id();
-            $table->integer('team_member_id')->unsigned();
-            $table->integer('team_tournament_id')->unsigned();
-            $table->foreign('team_member_id')->references('id')->on('team_members');
-            $table->foreign('team_tournament_id')->references('id')->on('team_tournament');
+            $table->foreignId('team_member_id')->constrained();
+            $table->foreignId('team_tournament_id')->constrained('team_tournament');
             $table->timestamps();
         });
     }

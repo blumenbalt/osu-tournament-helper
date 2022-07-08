@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('brackets', function (Blueprint $table) {
             $table->id();
             $table->enum('round', ['qualifier', 'round_64', 'round_32', 'round_16', 'round_8', 'quarterfinals', 'semifinals', 'finals', 'grandfinals']);
-            $table->integer('tournament_id')->unsigned();
-            $table->foreign('tournament_id')->references('id')->on('tournaments');
+            $table->foreignId('tournament_id')->constrained();
             $table->timestamps();
         });
     }

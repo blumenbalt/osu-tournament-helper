@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('map_pools', function (Blueprint $table) {
             $table->id();
-            $table->foreign('bracket_id')->references('id')->on('brackets');
+            $table->foreignId('bracket_id')->constrained();
             $table->timestamps();
         });
     }

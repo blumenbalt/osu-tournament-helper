@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->date('date');
-            $table->integer('tournament_id')->unsigned();
-            $table->foreign('tournament_id')->references('id')->on('tournaments');
+            $table->foreignId('tournament_id')->constrained();
             $table->timestamps();
         });
     }
