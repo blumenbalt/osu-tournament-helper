@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('pool_items', function (Blueprint $table) {
             $table->id();
-            //@todo check enum types
-            $table->enum('type', []);
+            $table->enum('type', ['nomod', 'hardrock', 'hidden', 'doubletime', 'freemod']);
+            $table->integer('type_number');
             $table->integer('music_id')->unsigned();
             $table->integer('map_pool_id')->unsigned();
             $table->foreign('music_id')->references('id')->on('music');
