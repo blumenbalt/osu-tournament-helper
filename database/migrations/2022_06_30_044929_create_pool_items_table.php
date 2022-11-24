@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->enum('type', ['nomod', 'hardrock', 'hidden', 'doubletime', 'freemod']);
             $table->integer('type_number');
-            $table->foreignId('music_id')->constrained();
+            $table->foreignId('music_id')->constrained('musics');
             $table->foreignId('map_pool_id')->constrained();
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('user_skills', function (Blueprint $table) {
             $table->id();
-            $table->type('enum', ['strength', 'weakness']);
+            $table->enum('type', ['strength', 'weakness']);
             $table->float('self_rating');
             $table->float('public_rating');
             $table->foreignId('user_id')->constrained();
