@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pool_items', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['nomod', 'hardrock', 'hidden', 'doubletime', 'freemod']);
+            $table->enum('type', ['nomod', 'hardrock', 'hidden', 'doubletime', 'freemod', 'easy', 'halftime', 'flashlight', 'tiebreaker']);
             $table->integer('type_number');
             $table->foreignId('music_id')->constrained('musics');
             $table->foreignId('map_pool_id')->constrained();

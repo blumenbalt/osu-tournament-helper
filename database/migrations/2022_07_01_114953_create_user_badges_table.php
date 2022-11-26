@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->date('awarded_at');
             $table->text('description');
-            $table->string('image_url');
-            $table->string('url');
+            $table->string('image_url', 100);
+            $table->string('url', 100);
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

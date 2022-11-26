@@ -15,6 +15,7 @@ class PoolItem extends Model
      */
     protected $fillable = [
         'type',
+        'type_number'
     ];
     /**
      * Get the music associated with the poolItem.

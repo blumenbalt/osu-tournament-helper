@@ -21,7 +21,7 @@ return new class extends Migration
             $table->float('bpm');
             $table->float('ar');
             $table->float('accuracy');
-            $table->string('beatmap_id');
+            $table->string('beatmap_id')->unique();
             $table->string('beatmapset_id');
             $table->timestamps();
         });

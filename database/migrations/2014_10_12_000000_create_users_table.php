@@ -15,12 +15,12 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('osu_id');
+            $table->string('username', 30)->unique();
+            $table->string('osu_id', 15)->unique();
             $table->integer('pp');
             $table->integer('updated_rank');
-            $table->string('country');
-            $table->set('mod_preference', ['hardrock', 'doubletime', 'hidden', 'flashlight', 'easy']);
+            $table->string('country', 50);
+            $table->set('mod_preference', ['hardrock', 'doubletime', 'hidden', 'flashlight', 'easy'])->nullable();
             $table->timestamps();
         });
     }

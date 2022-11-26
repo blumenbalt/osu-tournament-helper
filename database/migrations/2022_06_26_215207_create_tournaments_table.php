@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('tournaments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('min_rank');
-            $table->integer('max_rank');
+            $table->string('name', 75);
+            $table->integer('min_rank')->nullable();
+            $table->integer('max_rank')->nullable();
             $table->timestamps();
         });
     }

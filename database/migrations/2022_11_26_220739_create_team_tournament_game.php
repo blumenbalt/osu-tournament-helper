@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_skills', function (Blueprint $table) {
+        Schema::create('team_tournament_game', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['strength', 'weakness']);
-            $table->float('self_rating');
-            $table->float('public_rating')->nullable();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('skill_id')->constrained();
             $table->timestamps();
+            $table->foreignId('game_id')->constrained();
+            $table->foreignId('team_tournament_id')->constrained('team_tournament');
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_skills');
+        Schema::dropIfExists('team_tournament_game');
     }
 };

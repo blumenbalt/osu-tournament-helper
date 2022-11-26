@@ -9,8 +9,16 @@ class Team extends Model
 {
     use HasFactory;
     /**
+     * The team leader. 
+     */
+    public function leader()
+    {
+        return $this->hasOne(User::class);
+    }
+    /**
      * the users that the team has.
      */
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'team_member');
@@ -39,7 +47,7 @@ class Team extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at', 
+        'created_at',
         'updated_at',
     ];
 }

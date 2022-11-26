@@ -15,4 +15,12 @@ class TeamTournament extends Model
     {
         return $this->belongsToMany(TeamMember::class, 'team_member_tournament');
     }
+
+    /**
+     * the tournament game that team played.
+     */
+    public function team_tournament_game()
+    {
+        return $this->hasMany(TeamTournamentGame::class);
+    }
 }
